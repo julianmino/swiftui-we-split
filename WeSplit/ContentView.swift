@@ -35,13 +35,13 @@ struct ContentView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("Amount", value: $checkAmount, format: .currency(code: currencyCode))
+                    TextField(Localizables.amount.localized, value: $checkAmount, format: .currency(code: currencyCode))
                         .keyboardType(.decimalPad)
                         .focused($amountIsFocused)
                     
-                    Picker("Number of people", selection: $numberOfPeople) {
+                    Picker(Localizables.numberOfPeople.localized, selection: $numberOfPeople) {
                         ForEach(2...100, id: \.self) { number in
-                            Text("\(number) people")
+                            Text(Localizables.people(number: number).localized)
                         }
                     }.pickerStyle(.menu)
                 }
@@ -49,22 +49,22 @@ struct ContentView: View {
                 Section {
                     Picker("Tip percentage", selection: $tipPercentage) {
                         ForEach(tipPercentages, id: \.self) { percentage in
-                            Text("\(percentage)% tip")
+                            Text(Localizables.percentOfTip(percent: percentage).localized)
                         }
                     }.pickerStyle(.segmented)
                 } header: {
-                    Text("How much tip do you want to leave?")
+                    Text(Localizables.tipSelectionTitle.localized)
                 }
                 Section {
                     Text(totalPerPerson, format: .currency(code: currencyCode))
                 } header: {
-                    Text("Total per person")
+                    Text(Localizables.totalPerPerson.localized)
                 }
                 
                 Section {
                     Text(tipPerPerson, format: .currency(code: currencyCode))
                 } header: {
-                    Text("Tip per person")
+                    Text(Localizables.tipPerPerson.localized)
                 }
             }
             .navigationTitle("WeSplit")
