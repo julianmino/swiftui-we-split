@@ -11,8 +11,6 @@ struct ContentView: View {
     @State private var checkAmount: Double = 0.0
     @State private var numberOfPeople = 2
     @State private var tipPercentage = 0
-    @State private var value = 0
-    @State private var oldValue = 0
     
     @FocusState private var amountIsFocused
 
@@ -63,6 +61,7 @@ struct ContentView: View {
                 
                 Section {
                     Text(tipPerPerson, format: .currency(code: currencyCode))
+                        .foregroundColor(tipPercentage == 0 ? .red : .primary)
                 } header: {
                     Text(Localizables.tipPerPerson.localized)
                 }
